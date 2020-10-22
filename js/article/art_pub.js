@@ -88,7 +88,8 @@ $(function() {
         fd.append('cover_img', blob)
         // 6. 发起 ajax 数据请求
         publishArticle(fd)
-      })
+      }) 
+     
   })
 
   // 定义一个发布文章的方法
@@ -105,7 +106,7 @@ $(function() {
         if (res.status !== 0) {
           return layer.msg('发布文章失败！')
         }
-        layer.msg('发布文章成功！')
+        // layer.msg('发布文章成功！')
         // 发布文章成功后，跳转到文章列表页面
         location.href = '/article/art_list.html'
       }

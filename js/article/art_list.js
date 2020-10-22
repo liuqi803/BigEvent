@@ -45,6 +45,7 @@ $(function() {
         if (res.status !== 0) {
           return layer.msg('获取文章列表失败！')
         }
+        // console.log(res);
         // 使用模板引擎渲染页面的数据
         var htmlStr = template('tpl-table', res)
         $('tbody').html(htmlStr)
@@ -103,8 +104,8 @@ $(function() {
         // 可以通过 first 的值，来判断是通过哪种方式，触发的 jump 回调
         // 如果 first 的值为 true，证明是方式2触发的
         // 否则就是方式1触发的
-        console.log(first)
-        console.log(obj.curr)
+              // console.log(first)
+            // console.log(obj.curr)
         // 把最新的页码值，赋值到 q 这个查询参数对象中
         q.pagenum = obj.curr
         // 把最新的条目数，赋值到 q 这个查询参数对象的 pagesize 属性中
@@ -150,5 +151,21 @@ $(function() {
 
       layer.close(index)
     })
+  })
+
+
+  //编辑文章
+  $('tbody').on('click', '.btn_edit', function() {
+    var id = $(this).attr('data-id');
+    $.ajax({
+      type: "GET",
+      url: "/my/article/" + id,
+      success: function (res) {
+        // console.log(res);
+        location.href = '../../article/art_pub.html';
+        // $('[name=title]').val(res.data.title)
+        // form.val('form-a', res.data)
+      }
+    });
   })
 })
